@@ -1,0 +1,21 @@
+import { Router } from 'express';
+import { PortalController } from '../controllers/portal.controller';
+import { authenticateToken, nguoiThueOnly } from '../middleware/auth';
+import { PublicController } from '../controllers/quangCao.controller';
+
+const router = Router();
+router.use(authenticateToken, nguoiThueOnly);
+router.get('/tong-quan', PortalController.tongQuan);
+router.get('/thong-tin', PortalController.getThongTin);
+router.put('/thong-tin', PortalController.updateThongTin);
+router.get('/phong', PortalController.getPhong);
+router.get('/hop-dong', PortalController.getHopDong);
+router.get('/hoa-don', PortalController.getHoaDon);
+router.get('/hoa-don/:id', PortalController.getHoaDonById);
+router.get('/thanh-toan', PortalController.getThanhToan);
+router.get('/chi-so-dien-nuoc', PortalController.getChiSo);
+router.get('/su-co', PortalController.getSuCo);
+router.post('/su-co', PortalController.createSuCo);
+router.delete('/su-co/:id', PortalController.huySuCo);
+router.get('/uu-dai', PublicController.quangCaoNguoiThue);
+export default router;
